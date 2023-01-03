@@ -1,0 +1,398 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <title>ORM PROJECT</title>
+  </head>
+  <style >
+  * {
+  box-sizing: border-box;
+}
+
+.column {
+
+  float: left;
+  width: 33.33%;
+  padding: 1px;
+  margin: auto;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: grid;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+    width: 100%;
+    height: auto;
+    bottom: 0;
+    
+}
+table, td, th {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-align: center;
+  height: 100%;
+}
+</style>
+  <body>
+    
+    <center>
+      <h1>ORM Project</h1>
+      {% block content %}  
+        <form method="post" enctype="multipart/form-data">  
+          {% csrf_token %}
+          <input type="text" name="exam_name" placeholder="exam_name" class="field"><br /><br />
+          <input type="file" name="images">
+         
+          <!-- {{ form.as_p }}   -->
+          <button type="submit">Upload</button>
+            
+        </form>  
+  
+        {% if img_obj %}  
+        <h3>Succesfully uploaded : {{img_obj.caption}}</h3>    
+        
+        <div class ="row">
+          <div class = "column">
+            <img src="{{img_obj.image.url}}" alt="bd-placeholder-img" width=  "{{ img_width }}" height= "{{ img_height }}">
+          </div>
+       
+          <div class = "column">
+               <img src="./static/images/hstacked.jpg" alt="bd-placeholder-img">
+          </div>
+          <div class = "column"> 
+            <table >
+              <thead>
+              <tr>
+                <th style="text-align: center" colspan="8"> ANSWER SHEET</th>
+              </tr>
+            </thead>
+              <tbody>
+                <tr>
+                    <td>Question 1</td>
+                    <td>{{ answer_key.0 }}</td>
+                    <td>Question 26</td>
+                    <td>{{ answer_key.25 }}</td>
+                    <td>Question 51</td>
+                    <td>{{ answer_key.50 }}</td>
+                    <td>Question 76</td>
+                    <td>{{ answer_key.75 }}</td>
+                </tr>
+                <tr>
+                  <td>Question 2 </td>
+                  <td>{{ answer_key.1 }}</td>
+                  <td>Question 27</td>
+                  <td>{{ answer_key.26 }}</td>
+                  <td>Question 52</td>
+                  <td>{{ answer_key.51 }}</td>
+                  <td>Question 77</td>
+                  <td>{{ answer_key.76 }}</td>
+                </tr>
+                <tr>
+                  <td>Question 3</td>
+                  <td>{{ answer_key.2 }}</td>
+                  <td>Question 28</td>
+                  <td>{{ answer_key.27 }}</td>
+                  <td>Question 53</td>
+                  <td>{{ answer_key.52 }}</td>
+                  <td>Question 78</td>
+                  <td>{{ answer_key.77 }}</td>
+                </tr>
+                <tr>
+                  <td>Question 4</td>
+                  <td>{{ answer_key.3 }}</td>
+                  <td>Question 29</td>
+                  <td>{{ answer_key.28 }}</td>
+                  <td>Question 54</td>
+                  <td>{{ answer_key.53 }}</td>
+                  <td>Question 79</td>
+                  <td>{{ answer_key.78 }}</td>
+                </tr>
+                <tr>
+                  <td>Question 5</td>
+                  <td>{{ answer_key.4 }}</td>
+                  <td>Question 30</td>
+                  <td>{{ answer_key.29 }}</td>
+                  <td>Question 55</td>
+                  <td>{{ answer_key.54 }}</td>
+                  <td>Question 80</td>
+                  <td>{{ answer_key.79 }}</td>
+                </tr>
+                <tr>
+                  <td>Question 6</td>
+                  <td>{{ answer_key.5 }}</td>
+                  <td>Question 31</td>
+                  <td>{{ answer_key.30 }}</td>
+                  <td>Question 56</td>
+                  <td>{{ answer_key.55 }}</td>
+                  <td>Question 81</td>
+                  <td>{{ answer_key.80 }}</td>
+                </tr>
+                <tr>
+                  <td>Question 7</td>
+                  <td>{{ answer_key.6 }}</td>
+                  <td>Question 32</td>
+                  <td>{{ answer_key.31 }}</td>
+                  <td>Question 57</td>
+                  <td>{{ answer_key.56 }}</td>
+                  <td>Question 82</td>
+                  <td>{{ answer_key.81 }}</td>
+                </tr>
+                <tr>
+                  <td>Question 8</td>
+                  <td>{{ answer_key.7 }}</td>
+                  <td>Question 33</td>
+                  <td>{{ answer_key.32 }}</td>
+                  <td>Question 58</td>
+                  <td>{{ answer_key.57 }}</td>
+                  <td>Question 83</td>
+                  <td>{{ answer_key.82 }}</td>
+                </tr>
+                <tr>
+                  <td>Question 9</td>
+                  <td>{{ answer_key.8 }}</td>
+                  <td>Question 34</td>
+                  <td>{{ answer_key.33 }}</td>
+                  <td>Question 59</td>
+                  <td>{{ answer_key.58 }}</td>
+                  <td>Question 84</td>
+                  <td>{{ answer_key.83 }}</td>
+                </tr>
+                <tr>
+                  <td>Question 10</td>
+                  <td>{{ answer_key.9 }}</td>
+                  <td>Question 35</td>
+                  <td>{{ answer_key.34 }}</td>
+                  <td>Question 60</td>
+                  <td>{{ answer_key.50 }}</td>
+                  <td>Question 85</td>
+                  <td>{{ answer_key.75 }}</td>
+                </tr>
+                <tr>
+                  <td>Question 11</td>
+                  <td>{{ answer_key.10 }}</td>
+                  <td>Question 36</td>
+                  <td>{{ answer_key.35 }}</td>
+                  <td>Question 61</td>
+                  <td>{{ answer_key.60 }}</td>
+                  <td>Question 86</td>
+                  <td>{{ answer_key.75 }}</td>
+              </tr>
+              <tr>
+                <td>Question 12 </td>
+                <td>{{ answer_key.11 }}</td>
+                <td>Question 37</td>
+                <td>{{ answer_key.36 }}</td>
+                <td>Question 62</td>
+                <td>{{ answer_key.61 }}</td>
+                <td>Question 87</td>
+                <td>{{ answer_key.86 }}</td>
+              </tr>
+              <tr>
+                <td>Question 13</td>
+                <td>{{ answer_key.12 }}</td>
+                <td>Question 38</td>
+                <td>{{ answer_key.37 }}</td>
+                <td>Question 63</td>
+                <td>{{ answer_key.62 }}</td>
+                <td>Question 88</td>
+                <td>{{ answer_key.87 }}</td>
+              </tr>
+              <tr>
+                <td>Question 14</td>
+                <td>{{ answer_key.13 }}</td>
+                <td>Question 39</td>
+                <td>{{ answer_key.38 }}</td>
+                <td>Question 64</td>
+                <td>{{ answer_key.63 }}</td>
+                <td>Question 89</td>
+                <td>{{ answer_key.88 }}</td>
+              </tr>
+              <tr>
+                <td>Question 15</td>
+                <td>{{ answer_key.14 }}</td>
+                <td>Question 40</td>
+                <td>{{ answer_key.39 }}</td>
+                <td>Question 65</td>
+                <td>{{ answer_key.64 }}</td>
+                <td>Question 90</td>
+                <td>{{ answer_key.89 }}</td>
+              </tr>
+              <tr>
+                <td>Question 16</td>
+                <td>{{ answer_key.15 }}</td>
+                <td>Question 41</td>
+                <td>{{ answer_key.40 }}</td>
+                <td>Question 66</td>
+                <td>{{ answer_key.65 }}</td>
+                <td>Question 91</td>
+                <td>{{ answer_key.90 }}</td>
+              </tr>
+              <tr>
+                <td>Question 17</td>
+                <td>{{ answer_key.16 }}</td>
+                <td>Question 42</td>
+                <td>{{ answer_key.41 }}</td>
+                <td>Question 67</td>
+                <td>{{ answer_key.66 }}</td>
+                <td>Question 92</td>
+                <td>{{ answer_key.91 }}</td>
+              </tr>
+              <tr>
+                <td>Question 18</td>
+                <td>{{ answer_key.17 }}</td>
+                <td>Question 43</td>
+                <td>{{ answer_key.42 }}</td>
+                <td>Question 68</td>
+                <td>{{ answer_key.67 }}</td>
+                <td>Question 93</td>
+                <td>{{ answer_key.92 }}</td>
+              </tr>
+              <tr>
+                <td>Question 19</td>
+                <td>{{ answer_key.18 }}</td>
+                <td>Question 44</td>
+                <td>{{ answer_key.43 }}</td>
+                <td>Question 69</td>
+                <td>{{ answer_key.68 }}</td>
+                <td>Question 94</td>
+                <td>{{ answer_key.93 }}</td>
+              </tr>
+              <tr>
+                <td>Question 20</td>
+                <td>{{ answer_key.19 }}</td>
+                <td>Question 45</td>
+                <td>{{ answer_key.44 }}</td>
+                <td>Question 70</td>
+                <td>{{ answer_key.69 }}</td>
+                <td>Question 95</td>
+                <td>{{ answer_key.94 }}</td>
+              </tr>
+              <tr>
+                <td>Question 21</td>
+                <td>{{ answer_key.20 }}</td>
+                <td>Question 46</td>
+                <td>{{ answer_key.45 }}</td>
+                <td>Question 71</td>
+                <td>{{ answer_key.70 }}</td>
+                <td>Question 96</td>
+                <td>{{ answer_key.95 }}</td>
+            </tr>
+            <tr>
+              <td>Question 22 </td>
+              <td>{{ answer_key.21 }}</td>
+              <td>Question 47</td>
+              <td>{{ answer_key.46 }}</td>
+              <td>Question 72</td>
+              <td>{{ answer_key.71 }}</td>
+              <td>Question 97</td>
+              <td>{{ answer_key.96 }}</td>
+            </tr>
+            <tr>
+              <td>Question 23</td>
+              <td>{{ answer_key.22 }}</td>
+              <td>Question 48</td>
+              <td>{{ answer_key.47 }}</td>
+              <td>Question 73</td>
+              <td>{{ answer_key.72 }}</td>
+              <td>Question 98</td>
+              <td>{{ answer_key.97 }}</td>
+            </tr>
+            <tr>
+              <td>Question 24</td>
+              <td>{{ answer_key.23 }}</td>
+              <td>Question 49</td>
+              <td>{{ answer_key.48 }}</td>
+              <td>Question 74</td>
+              <td>{{ answer_key.73 }}</td>
+              <td>Question 99</td>
+              <td>{{ answer_key.98 }}</td>
+            </tr>
+            <tr>
+              <td>Question 25</td>
+              <td>{{ answer_key.24 }}</td>
+              <td>Question 50</td>
+              <td>{{ answer_key.49 }}</td>
+              <td>Question 75</td>
+              <td>{{ answer_key.74 }}</td>
+              <td>Question 100</td>
+              <td>{{ answer_key.99 }}</td>
+            </tr>
+                <tbody>
+            </table>
+            </div>
+            <div class="column">
+              <h5>OUTPUT</h5>
+              
+              <div id="show_score" style="display: none;">{{ score }}</div>
+              <button onclick="score()" id="btn">RESULT</button>
+            </div>
+          </div>
+
+        {% endif %} 
+        
+      {% endblock content %}  
+    
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    -->
+
+    <script>
+      function score() {
+        var show_score = document.getElementById('show_score').style.display;
+        console.log(show_score);
+        if(show_score == 'none'){
+          document.getElementById('show_score').style.display = 'block';
+          document.getElementById('btn').innerHTML = 'Hide';
+        }else{
+          document.getElementById('show_score').style.display = 'none';
+          document.getElementById('btn').innerHTML = 'Show';
+        }
+      }
+    </script>
+    <div>
+    <a class="btn btn-primary"  href="{% url 'image' %}" role="button">Multiple img</a>
+  </div>
+    </center>
+  </body>
+</html>

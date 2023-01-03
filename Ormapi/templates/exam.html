@@ -1,0 +1,25 @@
+<!DOCTYPE html> 
+<html> 
+  
+<body style="text-align:center;">   
+    <h1 style="color:rgb(0, 128, 128);">EXAM DETAILS</h1>
+      
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %} 
+       
+          
+        <!-- <input type="number" name="exam_id" placeholder="exam_id" class="field"><br /><br /> -->
+        <input type="text" name = "exam_name" placeholder="exam_name" class="field"> <br /><br />
+        <!-- Exam Year: <input type="date" name="exam_year" placeholder="exam_year" class="field"><br /><br /> -->
+        
+        <!-- Registration Date <input type="datetime-local" name="reg_date_time" placeholder="reg_date_time" class="field"><br /><br /> -->
+        <input type="file" name="images" multiple>
+
+        <br /><br />
+             
+        <button type="submit" class="btn">Add Exam</button> 
+    </form>
+
+</body> 
+  
+</html> 

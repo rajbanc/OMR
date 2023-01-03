@@ -1,0 +1,27 @@
+<!DOCTYPE html> 
+<html> 
+  
+<body style="text-align:center;"> 
+  
+    <h1 style="color:rgb(0, 128, 128);">Candidate Details</h1>
+      
+    <form action="" method="POST" >{% csrf_token %} 
+       
+    
+        <input type="text" name="name" placeholder="Enter name" class="field"><br /><br />
+        <input type="text" name = "symbol_no" placeholder="symbol_no" class="field"> <br /><br />
+        <input type="text" name="exam_name" placeholder="exam_name" class="field">
+        
+        <!-- <p>Exam Year: <input type="text" name="exam_year" placeholder="exam_year" class="field"></p> -->
+        
+        <p>Date Of Birth: <input type="date" name="date_of_birth" placeholder="date_of_birth" class="field"><br /><br /></p>
+        
+        
+        <button type="submit" class="btn">Add Candidate</button> 
+   
+    </form>
+      
+  
+</body> 
+  
+</html> 
