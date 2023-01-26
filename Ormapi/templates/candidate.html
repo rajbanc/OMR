@@ -1,5 +1,23 @@
 <!DOCTYPE html> 
 <html> 
+    <head>
+            <ul class="nav flex-row">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/can">Back</a>
+            </li>
+            </ul>
+            
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    
+      </head>
   
 <body style="text-align:center;"> 
   
@@ -8,9 +26,9 @@
     <form action="" method="POST" >{% csrf_token %} 
        
     
-        <input type="text" name="name" placeholder="Enter name" class="field"><br /><br />
-        <input type="text" name = "symbol_no" placeholder="symbol_no" class="field"> <br /><br />
-        <input type="text" name="exam_name" placeholder="exam_name" class="field">
+        Candidate Name: <input type="text" name="name" placeholder="Enter name" class="field"><br /><br />
+        Symbol No: <input type="text" name = "symbol_no" placeholder="symbol_no" class="field"> <br /><br />
+        Exam Name: <input type="text" name="exam_name" placeholder="exam_name" class="field">
         
         <!-- <p>Exam Year: <input type="text" name="exam_year" placeholder="exam_year" class="field"></p> -->
         

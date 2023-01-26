@@ -12,5 +12,7 @@ urlpatterns = [
     path("exams/",views.exam_detail, name = "exams"),
     path("view/",views.exam_view, name = "ex"),
     path("img/",views.upload, name = "image"),
-    path("generate/result/",views.generate_result, name = "gen_result")
+    path("generate/result/",views.generate_result, name = "gen_result"),
+    path("view_result/",views.result_view, name = "view_result"),
+    path("result_detail/",views.result_detail, name = "result_detail")
 ]

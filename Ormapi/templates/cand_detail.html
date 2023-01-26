@@ -13,6 +13,15 @@
       }
     </style>
   <head>
+    <ul class="nav flex-row">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/can">Back</a>
+    </li>
+    </ul>
+    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,15 +35,10 @@
   * {
   box-sizing: border-box;
 }
-
-.column {
-
-  float: left;
-  width: 33.33%;
-  padding: 1px;
-  margin: auto;
+.center {
+  width: 60;
+  margin:auto;
 }
-
 /* Clearfix (clear floats) */
 .row::after {
   content: "";
@@ -55,11 +59,12 @@ th {
   height: 100%;
 }
 </style>
-    <body>
+    <body class="center">
         <h1>Candidate List</h1>
-        <input placeholder="Name" id="name">
-        <input placeholder="Symbol no" id="symbol_no">
-        <button onclick="search()">Search</button>
+        <input placeholder="Name" id="name" name="name">
+        <input placeholder="Symbol no" id="symbol_no" name="symbol_no">
+        <button onclick="search()" value="search">Search </button>
+        <p>
         <table>
             <thead>
                 <tr>
@@ -76,11 +81,12 @@ th {
                 {% endfor %}
             </tbody>
         </table>
+      </p>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <!-- <script>
+    <script>
         function search() {
             var name = document.getElementById('name').value; 
             var symbol_no = document.getElementById('symbol_no').value; 
@@ -93,6 +99,6 @@ th {
                 }
             });
         }
-    </script> -->
+    </script>
 </html>
             

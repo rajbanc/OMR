@@ -17,6 +17,9 @@
       <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/generate/result/">Back</a>
+    </li>
       </ul>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -32,10 +35,11 @@
   box-sizing: border-box;
 }
 
-.column {
+ 
 
+.column {
   float: center;
-  width: 60%;
+  width: 100%;
   padding: 1px;
   margin: auto;
 }
@@ -46,46 +50,56 @@
   clear: both;
   display: grid;
 }
+
 table, td, th {
   border: 1px solid black;
 }
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  width: 80%;
 }
 
 th {
   text-align: center;
   height: 100%;
 }
+
+.customTd {
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 </style>
+
   <body>
     <center>
-    <h1 >Exam Details</h1>
-    </center>
-    <div class = "column"> 
-        <table >
-          <thead>
+    <h1>Results Details</h1>
+    <div class = "column">
+        <table>
+        <thead>
           <tr>
-            <th>Name</th>
-            <th>Year</th>
-            <th>Date and Time</th>
+            <th>Candidate</th>
+            <th>No.Of Correct Question</th>
+            <th>Percent</th>
+            <th>Solved Question</th>
           </tr>
             </thead>
           <tbody>
-            {% for data in exam %}
+            {% for candidate, score, percent, solved in result %}
+            
             <tr>
-                <td>{{ data.exam_name }}</td>
-                <td>{{ data.exam_year }}</td>
-                <td>{{ data.reg_date_time }}</td>
+                <td align="center">{{ candidate }}</td>
+                <td align="center">{{ score }}</td>
+                <td align="center">{{ percent }}</td>
+                <td class="customTd">{{ solved }}</td>
             </tr>
+            
             {% endfor %}
-
-           
+        
             </tbody>
         </table>
-       
+        </center>
         </body>
         </html>
-            

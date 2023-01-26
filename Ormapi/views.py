@@ -11,7 +11,6 @@ import copy
 import imutils
 from imutils.perspective import four_point_transform
 from imutils import contours
-from answer_key import ANSWER_KEY
 import random
 from .models import Result, CandidateDetails, Exam, MultipleImageUpload
 from ORM.settings import MEDIA_ROOT
@@ -43,8 +42,8 @@ def index(request):
 
         image = get_image(image_.read())
         candidate, score, total, percent, exam_QR, height, width, ANSWERS = calculate_result(image=image, exam_name_req=exam_name_req, ANSWER_KEY=ANSWER_KEY)
-        solved_que = json.dumps({"answerd_correct":ANSWERS})
-
+        solved_que = json.dumps({"answered_correct":ANSWERS})
+    
         print(image_, exam)
 
         is_created = MultipleImageUpload.objects.create(images=image_, exam_name=exam)
@@ -297,7 +296,10 @@ def preprocess(image, need_rect=False):
                 docCnt = approx
                 break
     return image, gray
-
+    
+# generate result
+def result_view(request):
+    return render(request,'view_result.html')
 def result(request):
    if request.method == 'POST':
         name = request.POST['name']
@@ -328,13 +330,28 @@ def generate_result(request):
             if exam_QR == exam:
                 print('if valid')
                 row = Result(candidate=candidate, score=score, total=total, percent=percent, solved_que=solved_que, exam=exam)
+                ml=MultipleImageUpload.objects.filter(exam_name = exam, is_checked=False).update(is_checked = True)
+                print(f"update is_checked {ml}")
                 print('row made')
-                row.save()
+                row.save()               
                 print('row saved')
         # images_path = unchecked_sheets[0]['images']
         # print(images_path)
     return render(request,'generate_results.html',{"result":'my_result'})
 
+def result_detail(request): 
+    if request.method == 'GET':
+        result = Result.objects.values("candidate", "score", "percent")
+        solved_que = Result.objects.values("solved_que")
+        solved_que = [list(json.loads(json.loads(r['solved_que'])['answerd_correct']).keys()) for r in solved_que]
+            # print(list(json.loads(json.loads(r['solved_que'])['answerd_correct']).keys()))
+            # print('-'*10)
+        
+        context = {'result': [[data['candidate'], data['score'], data['percent'], solved] for data, solved in zip(result, solved_que)]}
+       
+    return render(request,'result_detail.html', context)
+
+#add data in the candidate table
 def cand(request):
     return render(request,'cand_view.html')
 
@@ -381,7 +398,6 @@ def add_exam(request):
 def exam_detail(request): 
     if request.method == 'GET':
         exam = Exam.objects.values("exam_name", "exam_year", "reg_date_time")
-        print(exam)
         context = {'exam':exam}
     return render(request,'exam_details.html', context)
 
@@ -404,7 +420,7 @@ def calculate_result(image, exam_name_req=None, ANSWER_KEY=None, source_answersh
     ## read symbol number, exam_name from QR code 
     # adding static details
     if not source_answersheet:
-        candidate = CandidateDetails.objects.filter(name='pramod',symbol_no='314')[0]
+        candidate = CandidateDetails.objects.filter(name='mausam',symbol_no='123')[0]
         exam = Exam.objects.filter(exam_name=exam_name_req)[0]
             
     points = [(0,0)]
@@ -507,13 +523,15 @@ def calculate_result(image, exam_name_req=None, ANSWER_KEY=None, source_answersh
     score = correct * marks_per_question
     total = (q+1) * marks_per_question
     percent = (score / total) * 100
-    print("INFO Score: {:.0f}%".format(percent))
+    percent = float("{:.2f}".format(percent))
+    print("INFO Score: {:.2f}%".format(percent))
 
     ## write details into database
     cv2.imwrite('static/images/checked.jpg', paper)
 #    cv2.waitKey(0)  
     hstack_img(paper)
     ANSWERS = json.dumps(ANSWERS)
+    print(f"ANSWERS: {type(ANSWERS)}")
     if source_answersheet:
         return ANSWERS
     return candidate, score, total, percent, exam, height, width, ANSWERS
